@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script defer src="{{ url_for('static', filename='scripts.js') }}"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome User</h1>
+        <h2>Lecture Topic: {{ topic }}</h2>
+        <video id="webcam" autoplay></video>
+        <canvas id="overlay" style="position: absolute; top: 0; left: 0;"></canvas>
+        <p id="verification-status">Status: Unverified</p>
+        <button id="verify-ip">Verify Attendance</button>
+        <button onclick="location.href='{{ url_for('logout') }}'">Logout</button>
+    </div>
+</body>
+</html>

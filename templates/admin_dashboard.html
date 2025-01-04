@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script defer src="{{ url_for('static', filename='scripts.js') }}"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome Admin</h1>
+        <h2>Lecture Topic: {{ lecture.topic or "None" }}</h2>
+        <h2>Remaining Time: <span id="remaining-time">Loading...</span></h2>
+        <h3>Teacher's IP: {{ lecture.teacher_ip or "Not Available" }}</h3>
+        <h3>Attendance Log:</h3>
+        <ul>
+            {% for log in attendance_log %}
+            <li>{{ log.name }} - {{ log.timestamp }} (Confidence: {{ log.confidence }}%) (IP: {{ log.ip }})</li>
+            {% endfor %}
+        </ul>
+        <form method="POST">
+            {% if lecture.end_time is none %}
+            <label for="topic">Lecture Topic:</label>
+            <input type="text" name="topic" id="topic" required>
+            <label for="duration">Duration (minutes):</label>
+            <input type="number" name="duration" id="duration" required>
+            <button type="submit" name="start_lecture">Start Lecture</button>
+            {% else %}
+            <button type="submit" name="end_lecture">End Lecture</button>
+            {% endif %}
+        </form>
+        <button onclick="location.href='{{ url_for('logout') }}'">Logout</button>
+    </div>
+</body>
+</html>

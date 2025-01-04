@@ -1,0 +1,451 @@
+[
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "url_for",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "session",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "jsonify",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "cv2",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "cv2",
+        "description": "cv2",
+        "detail": "cv2",
+        "documentation": {}
+    },
+    {
+        "label": "dlib",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "dlib",
+        "description": "dlib",
+        "detail": "dlib",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "tensorflow",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "tensorflow",
+        "description": "tensorflow",
+        "detail": "tensorflow",
+        "documentation": {}
+    },
+    {
+        "label": "LabelEncoder",
+        "importPath": "sklearn.preprocessing",
+        "description": "sklearn.preprocessing",
+        "isExtraImport": true,
+        "detail": "sklearn.preprocessing",
+        "documentation": {}
+    },
+    {
+        "label": "socket",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "socket",
+        "description": "socket",
+        "detail": "socket",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "download_file",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def download_file(url, file_path):\n    if not os.path.exists(file_path):\n        print(f\"Downloading {file_path}...\")\n        response = requests.get(url, stream=True)\n        response.raise_for_status()\n        with open(file_path, \"wb\") as f:\n            for chunk in response.iter_content(chunk_size=8192):\n                f.write(chunk)\n        print(f\"{file_path} downloaded.\")\n# URLs for model files (replace with actual links)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "get_wifi_ip",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def get_wifi_ip():\n    \"\"\"Get the device's Wi-Fi IP address.\"\"\"\n    try:\n        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)\n        s.settimeout(1)\n        s.connect((\"8.8.8.8\", 80))\n        ip = s.getsockname()[0]\n        s.close()\n        return ip\n    except Exception:",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "login",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def login():\n    if request.method == 'POST':\n        email = request.form['email']\n        password = request.form['password']\n        if email == 'admin@test.com' and password == 'admin':\n            session['user'] = 'admin'\n            return redirect(url_for('admin_dashboard'))\n        elif email == 'user@test.com' and password == 'user':\n            session['user'] = 'user'\n            return redirect(url_for('user_dashboard'))",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "admin_dashboard",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def admin_dashboard():\n    if 'user' not in session or session['user'] != 'admin':\n        return redirect(url_for('login'))\n    if request.method == 'POST':\n        if 'start_lecture' in request.form:\n            topic = request.form['topic']\n            duration = int(request.form['duration'])\n            end_time = datetime.now() + timedelta(minutes=duration)\n            teacher_ip = get_wifi_ip()  # Get Wi-Fi IP address\n            ongoing_lecture.update({",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "user_dashboard",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def user_dashboard():\n    if 'user' not in session or session['user'] != 'user':\n        return redirect(url_for('login'))\n    if ongoing_lecture[\"end_time\"] is None:\n        return redirect(url_for('waiting'))\n    return render_template('user_dashboard.html', topic=ongoing_lecture[\"topic\"])\n@app.route('/waiting', methods=['GET'])\ndef waiting():\n    if 'user' not in session or session['user'] != 'user':\n        return redirect(url_for('login'))",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "waiting",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def waiting():\n    if 'user' not in session or session['user'] != 'user':\n        return redirect(url_for('login'))\n    if ongoing_lecture[\"end_time\"]:\n        return redirect(url_for('user_dashboard'))\n    return render_template('waiting.html')\n@app.route('/remaining_time')\ndef remaining_time():\n    \"\"\"Return remaining time for the lecture.\"\"\"\n    remaining = calculate_remaining_time()",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "remaining_time",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def remaining_time():\n    \"\"\"Return remaining time for the lecture.\"\"\"\n    remaining = calculate_remaining_time()\n    if remaining is None:\n        return jsonify({'time': None})\n    return jsonify({'time': str(remaining)})\n@app.route('/live_verify', methods=['POST'])\ndef live_verify():\n    \"\"\"Handle real-time face recognition to update verification status.\"\"\"\n    file = request.files['image']",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "live_verify",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def live_verify():\n    \"\"\"Handle real-time face recognition to update verification status.\"\"\"\n    file = request.files['image']\n    image = cv2.imdecode(np.frombuffer(file.read(), np.uint8), cv2.IMREAD_COLOR)\n    # Detect face\n    faces = face_detector(image, 1)\n    if not faces:\n        verification_status[\"verified\"] = False\n        verification_status[\"name\"] = None\n        verification_status[\"confidence\"] = None",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "verify_ip",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def verify_ip():\n    \"\"\"Verify if the user's IP matches the lecturer's IP and log attendance.\"\"\"\n    if 'user' not in session or session['user'] != 'user':\n        return jsonify({'status': 'Unauthorized', 'user_ip': get_wifi_ip()}), 401\n    user_ip = get_wifi_ip()  # Get user's Wi-Fi IP\n    teacher_ip = ongoing_lecture.get(\"teacher_ip\")\n    if not teacher_ip:\n        return jsonify({'status': 'No ongoing lecture', 'user_ip': user_ip}), 400\n    if verification_status[\"verified\"]:  # Check if face is verified\n        if user_ip.split('.')[0:3] == teacher_ip.split('.')[0:3]:  # Compare subnet",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "calculate_remaining_time",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def calculate_remaining_time():\n    \"\"\"Calculate remaining time for the lecture.\"\"\"\n    if not ongoing_lecture[\"end_time\"]:\n        return None\n    remaining = ongoing_lecture[\"end_time\"] - datetime.now()\n    return max(remaining, timedelta(seconds=0))\n@app.route('/logout')\ndef logout():\n    session.clear()\n    return redirect(url_for('login'))",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "logout",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def logout():\n    session.clear()\n    return redirect(url_for('login'))\nif __name__ == '__main__':\n    app.run(debug=True)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app = Flask(__name__)\napp.secret_key = 'your_secret_key'\n# Global Variables\nongoing_lecture = {\"teacher_ip\": None, \"end_time\": None, \"topic\": None}\nattendance_log = []\nverification_status = {\"verified\": False, \"name\": None, \"confidence\": None}  # Tracks live verification status\n# File download function\ndef download_file(url, file_path):\n    if not os.path.exists(file_path):\n        print(f\"Downloading {file_path}...\")",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app.secret_key",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app.secret_key = 'your_secret_key'\n# Global Variables\nongoing_lecture = {\"teacher_ip\": None, \"end_time\": None, \"topic\": None}\nattendance_log = []\nverification_status = {\"verified\": False, \"name\": None, \"confidence\": None}  # Tracks live verification status\n# File download function\ndef download_file(url, file_path):\n    if not os.path.exists(file_path):\n        print(f\"Downloading {file_path}...\")\n        response = requests.get(url, stream=True)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "ongoing_lecture",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "ongoing_lecture = {\"teacher_ip\": None, \"end_time\": None, \"topic\": None}\nattendance_log = []\nverification_status = {\"verified\": False, \"name\": None, \"confidence\": None}  # Tracks live verification status\n# File download function\ndef download_file(url, file_path):\n    if not os.path.exists(file_path):\n        print(f\"Downloading {file_path}...\")\n        response = requests.get(url, stream=True)\n        response.raise_for_status()\n        with open(file_path, \"wb\") as f:",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "attendance_log",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "attendance_log = []\nverification_status = {\"verified\": False, \"name\": None, \"confidence\": None}  # Tracks live verification status\n# File download function\ndef download_file(url, file_path):\n    if not os.path.exists(file_path):\n        print(f\"Downloading {file_path}...\")\n        response = requests.get(url, stream=True)\n        response.raise_for_status()\n        with open(file_path, \"wb\") as f:\n            for chunk in response.iter_content(chunk_size=8192):",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "verification_status",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "verification_status = {\"verified\": False, \"name\": None, \"confidence\": None}  # Tracks live verification status\n# File download function\ndef download_file(url, file_path):\n    if not os.path.exists(file_path):\n        print(f\"Downloading {file_path}...\")\n        response = requests.get(url, stream=True)\n        response.raise_for_status()\n        with open(file_path, \"wb\") as f:\n            for chunk in response.iter_content(chunk_size=8192):\n                f.write(chunk)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "shape_predictor_url",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "shape_predictor_url = \"https://drive.google.com/uc?id=<your-shape-predictor-id>\"\ndlib_resnet_url = \"https://drive.google.com/uc?id=<your-dlib-resnet-id>\"\n# File paths\nshape_predictor_path = \"shape_predictor_68_face_landmarks.dat\"\ndlib_resnet_path = \"dlib_face_recognition_resnet_model_v1.dat\"\n# Download required files if they don't exist\ndownload_file(shape_predictor_url, shape_predictor_path)\ndownload_file(dlib_resnet_url, dlib_resnet_path)\n# Load Face Recognition Model\nmodel_save_path = \"neural_net_model.h5\"",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "dlib_resnet_url",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "dlib_resnet_url = \"https://drive.google.com/uc?id=<your-dlib-resnet-id>\"\n# File paths\nshape_predictor_path = \"shape_predictor_68_face_landmarks.dat\"\ndlib_resnet_path = \"dlib_face_recognition_resnet_model_v1.dat\"\n# Download required files if they don't exist\ndownload_file(shape_predictor_url, shape_predictor_path)\ndownload_file(dlib_resnet_url, dlib_resnet_path)\n# Load Face Recognition Model\nmodel_save_path = \"neural_net_model.h5\"\nencoder_save_path = \"classes.npy\"",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "shape_predictor_path",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "shape_predictor_path = \"shape_predictor_68_face_landmarks.dat\"\ndlib_resnet_path = \"dlib_face_recognition_resnet_model_v1.dat\"\n# Download required files if they don't exist\ndownload_file(shape_predictor_url, shape_predictor_path)\ndownload_file(dlib_resnet_url, dlib_resnet_path)\n# Load Face Recognition Model\nmodel_save_path = \"neural_net_model.h5\"\nencoder_save_path = \"classes.npy\"\nmodel = tf.keras.models.load_model(model_save_path)\nlabel_encoder = np.load(encoder_save_path, allow_pickle=True)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "dlib_resnet_path",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "dlib_resnet_path = \"dlib_face_recognition_resnet_model_v1.dat\"\n# Download required files if they don't exist\ndownload_file(shape_predictor_url, shape_predictor_path)\ndownload_file(dlib_resnet_url, dlib_resnet_path)\n# Load Face Recognition Model\nmodel_save_path = \"neural_net_model.h5\"\nencoder_save_path = \"classes.npy\"\nmodel = tf.keras.models.load_model(model_save_path)\nlabel_encoder = np.load(encoder_save_path, allow_pickle=True)\n# Load dlib models",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "model_save_path",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "model_save_path = \"neural_net_model.h5\"\nencoder_save_path = \"classes.npy\"\nmodel = tf.keras.models.load_model(model_save_path)\nlabel_encoder = np.load(encoder_save_path, allow_pickle=True)\n# Load dlib models\nface_detector = dlib.get_frontal_face_detector()\nshape_predictor = dlib.shape_predictor(shape_predictor_path)\nface_rec_model = dlib.face_recognition_model_v1(dlib_resnet_path)\ndef get_wifi_ip():\n    \"\"\"Get the device's Wi-Fi IP address.\"\"\"",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "encoder_save_path",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "encoder_save_path = \"classes.npy\"\nmodel = tf.keras.models.load_model(model_save_path)\nlabel_encoder = np.load(encoder_save_path, allow_pickle=True)\n# Load dlib models\nface_detector = dlib.get_frontal_face_detector()\nshape_predictor = dlib.shape_predictor(shape_predictor_path)\nface_rec_model = dlib.face_recognition_model_v1(dlib_resnet_path)\ndef get_wifi_ip():\n    \"\"\"Get the device's Wi-Fi IP address.\"\"\"\n    try:",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "model",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "model = tf.keras.models.load_model(model_save_path)\nlabel_encoder = np.load(encoder_save_path, allow_pickle=True)\n# Load dlib models\nface_detector = dlib.get_frontal_face_detector()\nshape_predictor = dlib.shape_predictor(shape_predictor_path)\nface_rec_model = dlib.face_recognition_model_v1(dlib_resnet_path)\ndef get_wifi_ip():\n    \"\"\"Get the device's Wi-Fi IP address.\"\"\"\n    try:\n        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "label_encoder",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "label_encoder = np.load(encoder_save_path, allow_pickle=True)\n# Load dlib models\nface_detector = dlib.get_frontal_face_detector()\nshape_predictor = dlib.shape_predictor(shape_predictor_path)\nface_rec_model = dlib.face_recognition_model_v1(dlib_resnet_path)\ndef get_wifi_ip():\n    \"\"\"Get the device's Wi-Fi IP address.\"\"\"\n    try:\n        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)\n        s.settimeout(1)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "face_detector",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "face_detector = dlib.get_frontal_face_detector()\nshape_predictor = dlib.shape_predictor(shape_predictor_path)\nface_rec_model = dlib.face_recognition_model_v1(dlib_resnet_path)\ndef get_wifi_ip():\n    \"\"\"Get the device's Wi-Fi IP address.\"\"\"\n    try:\n        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)\n        s.settimeout(1)\n        s.connect((\"8.8.8.8\", 80))\n        ip = s.getsockname()[0]",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "shape_predictor",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "shape_predictor = dlib.shape_predictor(shape_predictor_path)\nface_rec_model = dlib.face_recognition_model_v1(dlib_resnet_path)\ndef get_wifi_ip():\n    \"\"\"Get the device's Wi-Fi IP address.\"\"\"\n    try:\n        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)\n        s.settimeout(1)\n        s.connect((\"8.8.8.8\", 80))\n        ip = s.getsockname()[0]\n        s.close()",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "face_rec_model",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "face_rec_model = dlib.face_recognition_model_v1(dlib_resnet_path)\ndef get_wifi_ip():\n    \"\"\"Get the device's Wi-Fi IP address.\"\"\"\n    try:\n        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)\n        s.settimeout(1)\n        s.connect((\"8.8.8.8\", 80))\n        ip = s.getsockname()[0]\n        s.close()\n        return ip",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "recognize_face",
+        "kind": 2,
+        "importPath": "recognition_model",
+        "description": "recognition_model",
+        "peekOfCode": "def recognize_face(image_file):\n    # Read image as an array\n    image = cv2.imdecode(np.frombuffer(image_file.read(), np.uint8), cv2.IMREAD_COLOR)\n    # Convert image to grayscale for face detection\n    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)\n    detector = dlib.get_frontal_face_detector()\n    faces = detector(gray)\n    if len(faces) == 0:\n        return 0, False  # No face detected\n    # Process the first detected face",
+        "detail": "recognition_model",
+        "documentation": {}
+    },
+    {
+        "label": "model_save_path",
+        "kind": 5,
+        "importPath": "recognition_model",
+        "description": "recognition_model",
+        "peekOfCode": "model_save_path = \"neural_net_model.h5\"\nencoder_save_path = \"classes.npy\"\n# Load the trained neural network model and label encoder\nmodel = tf.keras.models.load_model(model_save_path)\nlabel_encoder = np.load(encoder_save_path, allow_pickle=True)\n# Load dlib models\nshape_predictor = dlib.shape_predictor(\"shape_predictor_68_face_landmarks.dat\")\nface_rec_model = dlib.face_recognition_model_v1(\"dlib_face_recognition_resnet_model_v1.dat\")\n# Face Recognition Function\ndef recognize_face(image_file):",
+        "detail": "recognition_model",
+        "documentation": {}
+    },
+    {
+        "label": "encoder_save_path",
+        "kind": 5,
+        "importPath": "recognition_model",
+        "description": "recognition_model",
+        "peekOfCode": "encoder_save_path = \"classes.npy\"\n# Load the trained neural network model and label encoder\nmodel = tf.keras.models.load_model(model_save_path)\nlabel_encoder = np.load(encoder_save_path, allow_pickle=True)\n# Load dlib models\nshape_predictor = dlib.shape_predictor(\"shape_predictor_68_face_landmarks.dat\")\nface_rec_model = dlib.face_recognition_model_v1(\"dlib_face_recognition_resnet_model_v1.dat\")\n# Face Recognition Function\ndef recognize_face(image_file):\n    # Read image as an array",
+        "detail": "recognition_model",
+        "documentation": {}
+    },
+    {
+        "label": "model",
+        "kind": 5,
+        "importPath": "recognition_model",
+        "description": "recognition_model",
+        "peekOfCode": "model = tf.keras.models.load_model(model_save_path)\nlabel_encoder = np.load(encoder_save_path, allow_pickle=True)\n# Load dlib models\nshape_predictor = dlib.shape_predictor(\"shape_predictor_68_face_landmarks.dat\")\nface_rec_model = dlib.face_recognition_model_v1(\"dlib_face_recognition_resnet_model_v1.dat\")\n# Face Recognition Function\ndef recognize_face(image_file):\n    # Read image as an array\n    image = cv2.imdecode(np.frombuffer(image_file.read(), np.uint8), cv2.IMREAD_COLOR)\n    # Convert image to grayscale for face detection",
+        "detail": "recognition_model",
+        "documentation": {}
+    },
+    {
+        "label": "label_encoder",
+        "kind": 5,
+        "importPath": "recognition_model",
+        "description": "recognition_model",
+        "peekOfCode": "label_encoder = np.load(encoder_save_path, allow_pickle=True)\n# Load dlib models\nshape_predictor = dlib.shape_predictor(\"shape_predictor_68_face_landmarks.dat\")\nface_rec_model = dlib.face_recognition_model_v1(\"dlib_face_recognition_resnet_model_v1.dat\")\n# Face Recognition Function\ndef recognize_face(image_file):\n    # Read image as an array\n    image = cv2.imdecode(np.frombuffer(image_file.read(), np.uint8), cv2.IMREAD_COLOR)\n    # Convert image to grayscale for face detection\n    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)",
+        "detail": "recognition_model",
+        "documentation": {}
+    },
+    {
+        "label": "shape_predictor",
+        "kind": 5,
+        "importPath": "recognition_model",
+        "description": "recognition_model",
+        "peekOfCode": "shape_predictor = dlib.shape_predictor(\"shape_predictor_68_face_landmarks.dat\")\nface_rec_model = dlib.face_recognition_model_v1(\"dlib_face_recognition_resnet_model_v1.dat\")\n# Face Recognition Function\ndef recognize_face(image_file):\n    # Read image as an array\n    image = cv2.imdecode(np.frombuffer(image_file.read(), np.uint8), cv2.IMREAD_COLOR)\n    # Convert image to grayscale for face detection\n    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)\n    detector = dlib.get_frontal_face_detector()\n    faces = detector(gray)",
+        "detail": "recognition_model",
+        "documentation": {}
+    },
+    {
+        "label": "face_rec_model",
+        "kind": 5,
+        "importPath": "recognition_model",
+        "description": "recognition_model",
+        "peekOfCode": "face_rec_model = dlib.face_recognition_model_v1(\"dlib_face_recognition_resnet_model_v1.dat\")\n# Face Recognition Function\ndef recognize_face(image_file):\n    # Read image as an array\n    image = cv2.imdecode(np.frombuffer(image_file.read(), np.uint8), cv2.IMREAD_COLOR)\n    # Convert image to grayscale for face detection\n    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)\n    detector = dlib.get_frontal_face_detector()\n    faces = detector(gray)\n    if len(faces) == 0:",
+        "detail": "recognition_model",
+        "documentation": {}
+    }
+]

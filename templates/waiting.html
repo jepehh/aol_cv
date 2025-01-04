@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waiting Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Wait for your lecturer to start the session...</h1>
+        <button class="logout" onclick="location.href='{{ url_for('logout') }}'">Logout</button>
+    </div>
+</body>
+</html>
