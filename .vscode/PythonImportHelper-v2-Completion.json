@@ -147,7 +147,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def download_file(url, file_path):\n    if not os.path.exists(file_path):\n        print(f\"Downloading {file_path}...\")\n        response = requests.get(url, stream=True)\n        response.raise_for_status()\n        with open(file_path, \"wb\") as f:\n            for chunk in response.iter_content(chunk_size=8192):\n                f.write(chunk)\n        print(f\"{file_path} downloaded.\")\n# URLs for model files (replace with actual links)",
+        "peekOfCode": "def download_file(url, file_path):\n    if not os.path.exists(file_path):\n        print(f\"Downloading {file_path}...\")\n        response = requests.get(url, stream=True)\n        response.raise_for_status()\n        with open(file_path, \"wb\") as f:\n            for chunk in response.iter_content(chunk_size=8192):\n                f.write(chunk)\n        print(f\"{file_path} downloaded.\")\n# URLs for model files (adjusted for direct download)",
         "detail": "app",
         "documentation": {}
     },
@@ -291,7 +291,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "shape_predictor_url = \"https://drive.google.com/uc?id=<your-shape-predictor-id>\"\ndlib_resnet_url = \"https://drive.google.com/uc?id=<your-dlib-resnet-id>\"\n# File paths\nshape_predictor_path = \"shape_predictor_68_face_landmarks.dat\"\ndlib_resnet_path = \"dlib_face_recognition_resnet_model_v1.dat\"\n# Download required files if they don't exist\ndownload_file(shape_predictor_url, shape_predictor_path)\ndownload_file(dlib_resnet_url, dlib_resnet_path)\n# Load Face Recognition Model\nmodel_save_path = \"neural_net_model.h5\"",
+        "peekOfCode": "shape_predictor_url = \"https://drive.google.com/uc?id=18w8-gkA_GXk3nn2jki5eyomuALlKSzgE&export=download\"\ndlib_resnet_url = \"https://drive.google.com/uc?id=1rZMu8kb4hm7JnmG93yE1c30XtQrGpCie&export=download\"\n# File paths\nshape_predictor_path = \"shape_predictor_68_face_landmarks.dat\"\ndlib_resnet_path = \"dlib_face_recognition_resnet_model_v1.dat\"\n# Download required files if they don't exist\ndownload_file(shape_predictor_url, shape_predictor_path)\ndownload_file(dlib_resnet_url, dlib_resnet_path)\n# Load Face Recognition Model\nmodel_save_path = \"neural_net_model.h5\"",
         "detail": "app",
         "documentation": {}
     },
@@ -300,7 +300,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "dlib_resnet_url = \"https://drive.google.com/uc?id=<your-dlib-resnet-id>\"\n# File paths\nshape_predictor_path = \"shape_predictor_68_face_landmarks.dat\"\ndlib_resnet_path = \"dlib_face_recognition_resnet_model_v1.dat\"\n# Download required files if they don't exist\ndownload_file(shape_predictor_url, shape_predictor_path)\ndownload_file(dlib_resnet_url, dlib_resnet_path)\n# Load Face Recognition Model\nmodel_save_path = \"neural_net_model.h5\"\nencoder_save_path = \"classes.npy\"",
+        "peekOfCode": "dlib_resnet_url = \"https://drive.google.com/uc?id=1rZMu8kb4hm7JnmG93yE1c30XtQrGpCie&export=download\"\n# File paths\nshape_predictor_path = \"shape_predictor_68_face_landmarks.dat\"\ndlib_resnet_path = \"dlib_face_recognition_resnet_model_v1.dat\"\n# Download required files if they don't exist\ndownload_file(shape_predictor_url, shape_predictor_path)\ndownload_file(dlib_resnet_url, dlib_resnet_path)\n# Load Face Recognition Model\nmodel_save_path = \"neural_net_model.h5\"\nencoder_save_path = \"classes.npy\"",
         "detail": "app",
         "documentation": {}
     },

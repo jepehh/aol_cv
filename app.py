@@ -28,9 +28,9 @@ def download_file(url, file_path):
                 f.write(chunk)
         print(f"{file_path} downloaded.")
 
-# URLs for model files (replace with actual links)
-shape_predictor_url = "https://drive.google.com/uc?id=<your-shape-predictor-id>"
-dlib_resnet_url = "https://drive.google.com/uc?id=<your-dlib-resnet-id>"
+# URLs for model files (adjusted for direct download)
+shape_predictor_url = "https://drive.google.com/uc?id=18w8-gkA_GXk3nn2jki5eyomuALlKSzgE&export=download"
+dlib_resnet_url = "https://drive.google.com/uc?id=1rZMu8kb4hm7JnmG93yE1c30XtQrGpCie&export=download"
 
 # File paths
 shape_predictor_path = "shape_predictor_68_face_landmarks.dat"
